@@ -1,0 +1,6 @@
+{
+    "rust-analyzer.linkedProjects": [
+        "./lib/Cargo.toml",
+    ],
+    "cSpell.language": "en,pl"
+}
