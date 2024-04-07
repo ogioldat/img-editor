@@ -319,7 +319,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "img-editor"
+name = "img_editor"
 version = "0.1.0"
 dependencies = [
  "image",

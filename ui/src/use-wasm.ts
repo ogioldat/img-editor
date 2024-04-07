@@ -1,17 +1,18 @@
-import type { InitOutput } from '@wasm';
 import { useEffect, useState } from 'react';
-import initWasm from '../../pkg';
+import initWasm, * as exportedWasmAPI from '../../pkg';
 
-export function useWasm(): InitOutput | null {
-  const [wasmModule, setWasmModule] = useState<InitOutput | null>(null);
+export type WasmAPI = typeof exportedWasmAPI;
+
+export function useWasm(): WasmAPI | null {
+  const [wasmAPI, setWasmAPI] = useState<WasmAPI | null>(null);
 
   useEffect(() => {
-    (async (): Promise<InitOutput> => {
+    (async (): ReturnType<typeof initWasm> => {
       const mod = await initWasm();
-      setWasmModule(mod);
+      setWasmAPI(exportedWasmAPI);
       return mod;
     })();
   }, []);
 
-  return wasmModule;
+  return wasmAPI;
 }

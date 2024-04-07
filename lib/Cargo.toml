@@ -1,5 +1,5 @@
 [package]
-name = "img-editor"
+name = "img_editor"
 version = "0.1.0"
 edition = "2021"
 
@@ -10,7 +10,8 @@ image = "0.25.1"
 wasm-bindgen = "0.2"
 
 [lib]
-crate-type = ["cdylib"]
+name = "img_editor"
+crate-type = ["cdylib", "rlib"]
 
 [build]
 target = "wasm32-unknown-unknown"
