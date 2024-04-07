@@ -12,11 +12,13 @@ pub fn grayscale(bytes: &[u8]) -> Vec<u8> {
         .unwrap();
 
     let mut buf = vec![];
-    let encoder = codecs::webp::WebPEncoder::new_lossless(&mut buf);
+    let encoder = codecs::jpeg::JpegEncoder::new(&mut buf);
 
     img.grayscale()
         .write_with_encoder(encoder)
         .expect("Failed to encode img");
+
+    println!("buf comp {} {}", img.as_bytes().len(), buf.len());
 
     buf
 }

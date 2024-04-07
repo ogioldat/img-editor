@@ -17,7 +17,7 @@ function ImageEditor({ wasm: { grayscale } }: { wasm: WasmAPI }) {
   reader.onload = () => {
     if (reader.result instanceof ArrayBuffer) {
       setUploadedImg(reader.result);
-      setEditedImg(reader.result);
+      // setEditedImg(reader.result);
     }
   };
 
@@ -25,7 +25,7 @@ function ImageEditor({ wasm: { grayscale } }: { wasm: WasmAPI }) {
     reader.readAsArrayBuffer(files[0]);
   }
 
-  const canViewUploadedImg = imgUploaded && editedImg && uploadedImg;
+  const canViewUploadedImg = imgUploaded && uploadedImg;
 
   return (
     <>
@@ -51,16 +51,18 @@ function ImageEditor({ wasm: { grayscale } }: { wasm: WasmAPI }) {
               <button
                 onClick={() => {
                   const edited = grayscale(new Uint8Array(uploadedImg));
-                  setEditedImg(edited.buffer);
+                  setEditedImg(edited);
                 }}
               >
                 Grayscale
               </button>
+            </div>
+          )}
 
-              <div>
-                <p>Edited</p>
-                <img width={500} src={getBase64FromArrayBuffer(editedImg)} />
-              </div>
+          {editedImg && (
+            <div>
+              <p>Edited</p>
+              <img width={500} src={getBase64FromArrayBuffer(editedImg)} />
             </div>
           )}
         </div>
